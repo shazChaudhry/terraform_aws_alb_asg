@@ -9,7 +9,7 @@ module "alb_sg" {
 
   ingress_cidr_blocks = ["0.0.0.0/0"]
   ingress_rules       = ["http-80-tcp"]
-  # there is two private subnet where ASG will be deployed to
+  # there are two private subnets where ASGs will be deployed to
   egress_cidr_blocks  = tolist(module.vpc.private_subnets_cidr_blocks) 
 }
 
