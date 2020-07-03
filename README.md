@@ -11,6 +11,9 @@ Inspiration for this repo was a couple of YouTube tutorials from [Java Home Clou
   </a>
 </p>
 
+This is another diagram to visualize ALB from [Terraform and AWS Application Load Balancers](https://medium.com/cognitoiq/terraform-and-aws-application-load-balancers-62a6f8592bcf) ![visualize ALM](./pics/alb_map.png)
+
+
 ## Scope
 
 I wanted to take a step further and automate the instructions. This includes using Terraform registry modules for:
@@ -41,3 +44,6 @@ This is how infrastrucutre is setup with Terraform:
 
 - [cloud-init Documentation](https://cloudinit.readthedocs.io/)
 - [Terraform Registry](https://registry.terraform.io/)
+- [KnowledgeIndia](https://youtu.be/bhobfyQ9SSE) - Auto Scaling Group, Launch Configuration, Scale-out & Scale-in Policies
+- [KnowledgeIndia](https://youtu.be/OKnd03nxu3k) - Application Load Balancer - Setup & DEMO - Differences from Classic ELB
+- [KnowledgeIndia](https://youtu.be/WRUA370p7jE) - Network Load Balancer DEMO | Layer 4 Load Balancing | Comparison
