@@ -21,7 +21,7 @@ module "alb" {
 
   target_groups = [
     {
-      name             = "alb-tg"
+      name_prefix      = "alb-"
       backend_protocol = "HTTP"
       backend_port     = 80
       target_type      = "instance"
@@ -34,16 +34,12 @@ module "alb" {
   }
 }
 
-output "alb_target_group_arn" {
-  value = tolist(module.alb.target_group_arns)[0]
-}
-
-resource "aws_autoscaling_attachment" "asg1-listener-tg" {
+resource "aws_autoscaling_attachment" "asg1-alb-listener-tg" {
   autoscaling_group_name = module.asg1.this_autoscaling_group_id
   alb_target_group_arn   = tolist(module.alb.target_group_arns)[0]
 }
 
-resource "aws_autoscaling_attachment" "asg2-listener-tg" {
+resource "aws_autoscaling_attachment" "asg2-alb-listener-tg" {
   autoscaling_group_name = module.asg2.this_autoscaling_group_id
   alb_target_group_arn   = tolist(module.alb.target_group_arns)[0]
 }

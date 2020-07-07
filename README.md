@@ -13,7 +13,7 @@ Inspiration for this repo was a couple of YouTube tutorials from [Java Home Clou
 
 ## Assumption
 
-This is not a beginner's guide to learning [Terraform](https://www.terraform.io/) or [AWS](https://aws.amazon.com/). It is assumed the reader is already familier with the technologies and would instead like to find related topics like ASG and LB in one place for reference purpose.
+This is not a beginner's guide to learning [Terraform](https://www.terraform.io/) or [AWS](https://aws.amazon.com/). It is assumed the reader is already familier with these technologies and would instead like to find related topics like ASG and LB in one place for reference purpose.
 
 ## Scope
 
@@ -25,6 +25,9 @@ This includes using [Terraform Registry](https://registry.terraform.io/) modules
 - VPC is subdivided in four subnets; two are public and two are private
 - Application Load Balancer _(ALB)_ in public subnets
 - Network Load Balancer _(NLB)_ in public subnets
+  - Code has been written but commented out for the following reasons:
+    - NLB target groups appear to delete ALB target groups
+    - For NLB to work alongside ALB, ASG security will need to be open from the entire world e.g. 0.0.0.0/0. And so, I did not want to open security group so widely
 - Classic ELB _(ELB)_ in public subnets
 - Auto Scaling Group _(ASG)_ in private subnets and are only reachable via LB on port 80
 - Auto Scaling policies for scaling up / down instances based on CloudWatch CPU alarms raised
@@ -39,10 +42,8 @@ This is how infrastrucutre is setup with Terraform:
 
 ## Test
 
-Three different type of load balancers (LB) were created above. In this section, each of the LB will be tested.
-
-#### ALB
-- Find DNS A record for the load balancer and hit it a few time in your web browser. You will notice Apache web server is being load balanced
+- Classic ELB and ALB were created above. Use DNS records for each of the LB for testing. 
+- Refreshing the pages should return different result depending which ASG the LB routed traffic to.
 
 ## Destroy infrastructure
 
