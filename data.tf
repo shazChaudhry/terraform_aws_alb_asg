@@ -35,8 +35,8 @@ data "template_file" "cloud-config-packages" {
 # Render a part using a `template_file: 
 data "template_file" "cloud-config-runcmd1" {
   template = "${file("${path.module}/templates/cloud-config-runcmd.tpl")}"
-    vars = {
-    asg     = "asg1"
+  vars = {
+    asg = "asg1"
   }
 }
 
@@ -53,8 +53,8 @@ data "template_cloudinit_config" "asg1" {
 # Render a part using a `template_file: 
 data "template_file" "cloud-config-runcmd2" {
   template = "${file("${path.module}/templates/cloud-config-runcmd.tpl")}"
-    vars = {
-    asg     = "asg2"
+  vars = {
+    asg = "asg2"
   }
 }
 

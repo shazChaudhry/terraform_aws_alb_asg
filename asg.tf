@@ -9,6 +9,7 @@ module "asg1" {
   image_id                     = data.aws_ami.latest_amzn_ami.id
   instance_type                = var.instance_type
   security_groups              = [module.web_server_sg.this_security_group_id]
+  load_balancers               = [module.elb.this_elb_id]
   recreate_asg_when_lc_changes = true
   user_data                    = data.template_cloudinit_config.asg1.rendered
 
@@ -44,6 +45,7 @@ module "asg2" {
   image_id                     = data.aws_ami.latest_amzn_ami.id
   instance_type                = var.instance_type
   security_groups              = [module.web_server_sg.this_security_group_id]
+  load_balancers               = [module.elb.this_elb_id]
   recreate_asg_when_lc_changes = true
   user_data                    = data.template_cloudinit_config.asg2.rendered
 
@@ -69,19 +71,3 @@ module "asg2" {
     },
   ]
 }
-
-# resource "aws_autoscaling_policy" "asg2" {
-#   name                   = "asg2-policy"
-#   autoscaling_group_name = module.asg2.this_autoscaling_group_name
-#   adjustment_type        = "ChangeInCapacity"
-#   policy_type            = "TargetTrackingScaling"
-#   target_tracking_configuration {
-#     predefined_metric_specification {
-#       predefined_metric_type = "ASGAverageCPUUtilization"
-#     }
-
-#     target_value = 70.0
-#   }
-#   #   cooldown               = 300
-#   #   scaling_adjustment     = 1
-# }
